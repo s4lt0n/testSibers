@@ -1,0 +1,54 @@
+﻿@model IEnumerable<test_Sibers.DB.Worker>
+
+@{
+    ViewBag.Title = "Работники";
+}
+
+<h2>Работники</h2>
+
+<p>
+    @Html.ActionLink("Добавить работника", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+
+            @Html.DisplayNameFor(model => model.SecondName)
+        </th>
+        <th>
+
+            @Html.DisplayNameFor(model => model.ThirdName)
+        </th>
+        <th>
+
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThirdName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

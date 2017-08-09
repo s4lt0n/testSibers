@@ -1,0 +1,83 @@
+﻿@model IEnumerable<test_Sibers.DB.Project>
+
+@{
+    ViewBag.Title = "Проекты";
+}
+
+<h2>Проекты</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("↑", "SortProject", new { _sortField = "Name", _fromTo="asc" })
+            @Html.ActionLink("↓", "SortProject", new { _sortField = "Name", _fromTo="desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExecutorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaderID)
+        </th>
+        <th>
+
+            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.ActionLink("↑", "SortProject", new { _sortField = "StartDate", _fromTo = "asc" })
+            @Html.ActionLink("↓", "SortProject", new { _sortField = "StartDate", _fromTo = "desc" })
+        </th>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority_)
+            @Html.ActionLink("↑", "SortProject", new { _sortField = "Priority_", _fromTo = "asc" })
+            @Html.ActionLink("↓", "SortProject", new { _sortField = "Priority_", _fromTo = "desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Executor.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem=>item.Leader.SecondName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

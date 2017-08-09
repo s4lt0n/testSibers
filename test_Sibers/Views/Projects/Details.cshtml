@@ -1,0 +1,97 @@
+﻿@model test_Sibers.DB.Project
+
+@{
+    ViewBag.Title = "Подробности";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>О проекте</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExecutorID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Executor.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leader.SecondName)
+            @Html.DisplayFor(model => model.Leader.FirstName)
+            @Html.DisplayFor(model => model.Leader.ThirdName)
+            @Html.DisplayFor(model => model.Leader.Email)
+           
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority_)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority_)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+    </dl>
+</div>
+<h5>
+    Работники в проекте:
+</h5>
+ @foreach (var i in Model.ProjectWorker)
+ {
+    <p>
+        @string.Format("• {0} {1} {2}", i.Worker.SecondName, i.Worker.FirstName, i.Worker.ThirdName)
+    </p>
+ }
+
+
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Назад", "Index")
+</p>
