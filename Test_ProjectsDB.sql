@@ -42,7 +42,7 @@ CONSTRAINT FK_Worker_Project FOREIGN KEY (WorkerID)
     REFERENCES Project (ID)  );
 
 GO
---тригер на случай удаления значения компании
+--С‚СЂРёРіРµСЂ РЅР° СЃР»СѓС‡Р°Р№ СѓРґР°Р»РµРЅРёСЏ Р·РЅР°С‡РµРЅРёСЏ РєРѕРјРїР°РЅРёРё
 CREATE TRIGGER TR_Del_Company
     ON Company
     INSTEAD OF DELETE
@@ -53,7 +53,7 @@ SET @del_id=(SELECT deleted.ID FROM deleted)
     UPDATE Project SET ExecutorID=null WHERE ExecutorID=@del_id
 	DELETE Company WHERE Company.ID=@del_id
 GO
---то же и для удаления из Project
+--С‚Рѕ Р¶Рµ Рё РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РёР· Project
 CREATE TRIGGER TR_Del_Project
     ON Project
     INSTEAD OF DELETE
@@ -64,7 +64,7 @@ SET @del_id=(SELECT deleted.ID FROM deleted)
     WHERE ProjectWorker.ProjectID=@del_id
 	DELETE Project WHERE Project.ID=@del_id
 GO
---воркер
+--РІРѕСЂРєРµСЂ
 CREATE TRIGGER TR_Del_Worker
     ON Worker
     INSTEAD OF DELETE
@@ -80,18 +80,18 @@ SET @del_id=(SELECT deleted.ID FROM deleted)
 	DELETE Worker WHERE Worker.ID=@del_id
 GO
 
---заполнение
+--Р·Р°РїРѕР»РЅРµРЅРёРµ
 INSERT INTO Worker VALUES
-('Иван','Иванов','Иванович','asd@mail.ru'),
-('Василий','Васильев','Васильевич','asd2@mail.ru'),
-('Петр','Петров','Петрович','asd3@mail.ru'),
-('Алексей','Алексеев','Алексеевич','asd4@mail.ru');
+('РРІР°РЅ','РРІР°РЅРѕРІ','РРІР°РЅРѕРІРёС‡','asd@mail.ru'),
+('Р’Р°СЃРёР»РёР№','Р’Р°СЃРёР»СЊРµРІ','Р’Р°СЃРёР»СЊРµРІРёС‡','asd2@mail.ru'),
+('РџРµС‚СЂ','РџРµС‚СЂРѕРІ','РџРµС‚СЂРѕРІРёС‡','asd3@mail.ru'),
+('РђР»РµРєСЃРµР№','РђР»РµРєСЃРµРµРІ','РђР»РµРєСЃРµРµРІРёС‡','asd4@mail.ru');
 GO
 
 INSERT INTO Company VALUES
-('Компания1'),
-('Компания2'),
-('Компания3'),
-('Компания4'),
-('Компания5');
+('РљРѕРјРїР°РЅРёСЏ1'),
+('РљРѕРјРїР°РЅРёСЏ2'),
+('РљРѕРјРїР°РЅРёСЏ3'),
+('РљРѕРјРїР°РЅРёСЏ4'),
+('РљРѕРјРїР°РЅРёСЏ5');
 GO
